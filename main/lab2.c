@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <string.h>
 #include "esp_log.h"
 #include "driver/i2c.h"
@@ -11,25 +10,12 @@ static const char *TAG = "OLED I2C";
 #define _I2C_NUMBER(num)            I2C_NUM_##num
 #define I2C_NUMBER(num)             _I2C_NUMBER(num)
 
-#define DATA_LENGTH                 512                                     /*!< Data buffer length of test buffer */
-#define RW_TEST_LENGTH              128                                     /*!< Data length for r/w test, [0,DATA_LENGTH] */
-#define DELAY_TIME_BETWEEN_ITEMS_MS 1000                                    /*!< delay time between different test items */
-
 #define I2C_MASTER_SCL_IO           CONFIG_I2C_MASTER_SCL                   /*!< gpio number for I2C master clock */
 #define I2C_MASTER_SDA_IO           CONFIG_I2C_MASTER_SDA                   /*!< gpio number for I2C master data  */
 #define I2C_MASTER_NUM              I2C_NUMBER(CONFIG_I2C_MASTER_PORT_NUM)  /*!< I2C port number for master dev */
 #define I2C_MASTER_FREQ_HZ          100000U                                 /*!< I2C master clock frequency */
 #define I2C_MASTER_TX_BUF_DISABLE   0                                       /*!< I2C master doesn't need buffer */
 #define I2C_MASTER_RX_BUF_DISABLE   0                                       /*!< I2C master doesn't need buffer */
-
-#define SSD1306_SENSOR_ADDR         0x3c                                    /*!< slave address for BH1750 sensor */
-#define BH1750_CMD_START            CONFIG_BH1750_OPMODE                    /*!< Operation mode */
-#define WRITE_BIT                   I2C_MASTER_WRITE                        /*!< I2C master write */
-#define READ_BIT                    I2C_MASTER_READ                         /*!< I2C master read */
-#define ACK_CHECK_EN                0x1                                     /*!< I2C master will check ack from slave*/
-#define ACK_CHECK_DIS               0x0                                     /*!< I2C master will not check ack from slave */
-#define ACK_VAL                     0x0                                     /*!< I2C ack value */
-#define NACK_VAL                    0x1                                     /*!< I2C nack value */
 
 static esp_err_t i2c_master_init(void)
 {
@@ -92,8 +78,6 @@ void task_ssd1306_display_text(const void *arg_text)
 {
 	char *text = (char*)arg_text;
 	uint8_t text_len = strlen(text);
-
-	printf("%s", text);
 
 	i2c_cmd_handle_t cmd;
 	
@@ -177,6 +161,21 @@ void app_main(void)
 {
     ESP_ERROR_CHECK(i2c_master_init());
 	ssd1306_init();
+
+	xTaskCreate(task_ssd1306_display_text, "display_1st_studentID", 1024 * 8, (void *)"20520326", 10, NULL);
+	vTaskDelay(2000 / portTICK_PERIOD_MS);
+	xTaskCreate(task_ssd1306_display_clear, "display_clear_1st", 1024 * 1, (void *)0, 10, NULL);
+	vTaskDelay(100 / portTICK_PERIOD_MS);
+
+	xTaskCreate(task_ssd1306_display_text, "display_2nd_studentID", 1024 * 8, (void *)"20520349", 10, NULL);
+	vTaskDelay(2000 / portTICK_PERIOD_MS);
+	xTaskCreate(task_ssd1306_display_clear, "display_xclear_2nd", 1024 * 1, (void *)0, 10, NULL);
+	vTaskDelay(100 / portTICK_PERIOD_MS);
+
+	xTaskCreate(task_ssd1306_display_text, "display_3rd_studentID", 1024 * 8, (void *)"20521595", 10, NULL);
+	vTaskDelay(2000 / portTICK_PERIOD_MS);
+	xTaskCreate(task_ssd1306_display_clear, "display_clear_3rd", 1024 * 1, (void *)0, 10, NULL);
+	vTaskDelay(100 / portTICK_PERIOD_MS);
 
 	xTaskCreate(task_ssd1306_display_text, "display_studentID", 1024 * 26, (void *)"20520326\n20520349\n20521595", 10, NULL);
 }
