@@ -60,7 +60,7 @@ static esp_err_t ssd1306_init(void)
 	i2c_master_write_byte(cmd, OLED_CMD_DISPLAY_ON, true);
 	i2c_master_stop(cmd);
 
-	espRc = i2c_master_cmd_begin(I2C_MASTER_NUM, cmd, 10/portTICK_PERIOD_MS);
+	espRc = i2c_master_cmd_begin(I2C_MASTER_NUM, cmd, 10 / portTICK_PERIOD_MS);
 	if (espRc == ESP_OK) 
 	{
 		ESP_LOGI(TAG, "OLED configured successfully");
