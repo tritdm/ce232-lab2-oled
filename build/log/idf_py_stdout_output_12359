@@ -1,0 +1,54 @@
+[1/9] Performing build step for 'bootloader'
+[1/1] cd /home/mike/Documents/tkhtn_kd/lab2/lab2/build/bootloader/esp-idf/esptool_py && /home/mike/.espressif/python_env/idf5.1_py3.8_env/bin/python /home/mike/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /home/mike/Documents/tkhtn_kd/lab2/lab2/build/bootloader/bootloader.bin
+Bootloader binary size 0x6740 bytes. 0x8c0 bytes (8%) free.
+[2/9] No install step for 'bootloader'
+[3/9] Completed 'bootloader'
+[4/9] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/lab2.c.obj
+/home/mike/Documents/tkhtn_kd/lab2/lab2/main/lab2.c: In function 'app_main':
+/home/mike/Documents/tkhtn_kd/lab2/lab2/main/lab2.c:165:21: warning: passing argument 1 of 'xTaskCreate' from incompatible pointer type [-Wincompatible-pointer-types]
+  165 |         xTaskCreate(task_ssd1306_display_text, "display_1st_studentID", 1024 * 8, (void *)"20520326", 10, NULL);
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~
+      |                     |
+      |                     void (*)(const void *)
+In file included from /home/mike/esp/esp-idf/components/freertos/FreeRTOS-Kernel/include/freertos/queue.h:49,
+                 from /home/mike/esp/esp-idf/components/freertos/FreeRTOS-Kernel/include/freertos/semphr.h:42,
+                 from /home/mike/esp/esp-idf/components/driver/i2c/include/driver/i2c.h:18,
+                 from /home/mike/Documents/tkhtn_kd/lab2/lab2/main/lab2.c:3:
+/home/mike/esp/esp-idf/components/freertos/FreeRTOS-Kernel/include/freertos/task.h:588:44: note: expected 'TaskFunction_t' {aka 'void (*)(void *)'} but argument is of type 'void (*)(const void *)'
+  588 |     BaseType_t xTaskCreate( TaskFunction_t pxTaskCode,
+      |                             ~~~~~~~~~~~~~~~^~~~~~~~~~
+/home/mike/Documents/tkhtn_kd/lab2/lab2/main/lab2.c:170:21: warning: passing argument 1 of 'xTaskCreate' from incompatible pointer type [-Wincompatible-pointer-types]
+  170 |         xTaskCreate(task_ssd1306_display_text, "display_2nd_studentID", 1024 * 8, (void *)"20520349", 10, NULL);
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~
+      |                     |
+      |                     void (*)(const void *)
+/home/mike/esp/esp-idf/components/freertos/FreeRTOS-Kernel/include/freertos/task.h:588:44: note: expected 'TaskFunction_t' {aka 'void (*)(void *)'} but argument is of type 'void (*)(const void *)'
+  588 |     BaseType_t xTaskCreate( TaskFunction_t pxTaskCode,
+      |                             ~~~~~~~~~~~~~~~^~~~~~~~~~
+/home/mike/Documents/tkhtn_kd/lab2/lab2/main/lab2.c:175:21: warning: passing argument 1 of 'xTaskCreate' from incompatible pointer type [-Wincompatible-pointer-types]
+  175 |         xTaskCreate(task_ssd1306_display_text, "display_3rd_studentID", 1024 * 8, (void *)"20521595", 10, NULL);
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~
+      |                     |
+      |                     void (*)(const void *)
+/home/mike/esp/esp-idf/components/freertos/FreeRTOS-Kernel/include/freertos/task.h:588:44: note: expected 'TaskFunction_t' {aka 'void (*)(void *)'} but argument is of type 'void (*)(const void *)'
+  588 |     BaseType_t xTaskCreate( TaskFunction_t pxTaskCode,
+      |                             ~~~~~~~~~~~~~~~^~~~~~~~~~
+/home/mike/Documents/tkhtn_kd/lab2/lab2/main/lab2.c:180:21: warning: passing argument 1 of 'xTaskCreate' from incompatible pointer type [-Wincompatible-pointer-types]
+  180 |         xTaskCreate(task_ssd1306_display_text, "display_studentID", 1024 * 26, (void *)"20520326\n20520349\n20521595", 10, NULL);
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~
+      |                     |
+      |                     void (*)(const void *)
+/home/mike/esp/esp-idf/components/freertos/FreeRTOS-Kernel/include/freertos/task.h:588:44: note: expected 'TaskFunction_t' {aka 'void (*)(void *)'} but argument is of type 'void (*)(const void *)'
+  588 |     BaseType_t xTaskCreate( TaskFunction_t pxTaskCode,
+      |                             ~~~~~~~~~~~~~~~^~~~~~~~~~
+[5/9] Linking C static library esp-idf/main/libmain.a
+[6/9] Generating ld/sections.ld
+[7/9] Linking CXX executable lab2.elf
+[8/9] Generating binary image from built executable
+esptool.py v4.5.1
+Creating esp32 image...
+Merged 2 ELF sections
+Successfully created esp32 image.
+Generated /home/mike/Documents/tkhtn_kd/lab2/lab2/build/lab2.bin
+[9/9] cd /home/mike/Documents/tkhtn_kd/lab2/lab2/build/esp-idf/esptool_py && /home/mike/.espressif/python_env/idf5.1_py3.8_env/bin/python /home/mike/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /home/mike/Documents/tkhtn_kd/lab2/lab2/build/partition_table/partition-table.bin /home/mike/Documents/tkhtn_kd/lab2/lab2/build/lab2.bin
+lab2.bin binary size 0x2fcf0 bytes. Smallest app partition is 0x100000 bytes. 0xd0310 bytes (81%) free.
