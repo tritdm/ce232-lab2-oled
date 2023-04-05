@@ -80,7 +80,7 @@ void task_ssd1306_display_text(const void *arg_text)
 	uint8_t text_len = strlen(text);
 
 	i2c_cmd_handle_t cmd;
-	
+
 	uint8_t cur_page = 0;
 
 	cmd = i2c_cmd_link_create();
@@ -126,7 +126,6 @@ void task_ssd1306_display_text(const void *arg_text)
 			i2c_cmd_link_delete(cmd);
 		}
 	}
-
 	vTaskDelete(NULL);
 }
 
@@ -162,20 +161,20 @@ void app_main(void)
     ESP_ERROR_CHECK(i2c_master_init());
 	ssd1306_init();
 
-	xTaskCreate(task_ssd1306_display_text, "display_1st_studentID", 1024 * 8, (void *)"20520326", 10, NULL);
+	xTaskCreate(task_ssd1306_display_text, "display_1st_studentID", 1024 * 1, (void *)"20520326", 10, NULL);
 	vTaskDelay(2000 / portTICK_PERIOD_MS);
 	xTaskCreate(task_ssd1306_display_clear, "display_clear_1st", 1024 * 1, (void *)0, 10, NULL);
 	vTaskDelay(100 / portTICK_PERIOD_MS);
 
-	xTaskCreate(task_ssd1306_display_text, "display_2nd_studentID", 1024 * 8, (void *)"20520349", 10, NULL);
+	xTaskCreate(task_ssd1306_display_text, "display_2nd_studentID", 1024 * 1, (void *)"20520349", 10, NULL);
 	vTaskDelay(2000 / portTICK_PERIOD_MS);
 	xTaskCreate(task_ssd1306_display_clear, "display_xclear_2nd", 1024 * 1, (void *)0, 10, NULL);
 	vTaskDelay(100 / portTICK_PERIOD_MS);
 
-	xTaskCreate(task_ssd1306_display_text, "display_3rd_studentID", 1024 * 8, (void *)"20521595", 10, NULL);
+	xTaskCreate(task_ssd1306_display_text, "display_3rd_studentID", 1024 * 1, (void *)"20521595", 10, NULL);
 	vTaskDelay(2000 / portTICK_PERIOD_MS);
 	xTaskCreate(task_ssd1306_display_clear, "display_clear_3rd", 1024 * 1, (void *)0, 10, NULL);
 	vTaskDelay(100 / portTICK_PERIOD_MS);
 
-	xTaskCreate(task_ssd1306_display_text, "display_studentID", 1024 * 26, (void *)"20520326\n20520349\n20521595", 10, NULL);
+	xTaskCreate(task_ssd1306_display_text, "display_studentID", 1024 * 1, (void *)"20520326\n20520349\n20521595", 10, NULL);
 }
